@@ -35,8 +35,39 @@ class PolyTreeNode
         else
             raise 'Not a child'
         end
-    endgit
-end
+    end
 
+    require 'byebug'
 # Part 2
 
+    def dfs(target)
+        #base cases 
+        
+        return self if target == self.value
+        return nil if self.children.empty?
+        self.children.each do |child|
+            stack = child.dfs(target)
+            if stack
+                return stack 
+            end
+        end
+        nil
+    
+    end
+
+    def bfs(target)
+        return self if self.value == target
+        queue = self.children.dup #[ root's children]
+        #iterate thorugh the queue, if not target, add children to queue
+        while queue.length > 0
+            next_up = queue.shift
+            if next_up.value == target
+                return next_up
+            else
+                next_up.children.each { |gchild| queue << gchild}
+            end
+        end
+        nil 
+
+    end
+end 
