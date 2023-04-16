@@ -57,7 +57,7 @@ class PolyTreeNode
 
     def bfs(target)
         return self if self.value == target
-        queue = self.children.dup #[ root's children]
+        queue= self.children.dup #[ root's children]
         #iterate thorugh the queue, if not target, add children to queue
         while queue.length > 0
             next_up = queue.shift
